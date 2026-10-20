@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Snake Game moderno com power-ups, níveis de dificuldade e efeitos visuais incríveis">
+  <title>🐍 Snake — Power Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- ═══════════════ MENU SCREEN ═══════════════ -->
+    <div id="menu-screen" class="screen active">
+      <canvas id="menu-canvas" width="400" height="200"></canvas>
+      <div class="menu-content">
+
+        <div class="title-wrap">
+          <h1 class="game-title">SNAKE</h1>
+          <p class="title-sub">Power Edition</p>
+        </div>
+
+        <div class="menu-options">
+          <div class="option-group">
+            <span class="option-label">DIFICULDADE</span>
+            <div class="btn-group">
+              <button class="opt-btn active" data-difficulty="easy"   id="opt-easy">Fácil</button>
+              <button class="opt-btn"        data-difficulty="medium" id="opt-medium">Médio</button>
+              <button class="opt-btn"        data-difficulty="hard"   id="opt-hard">Difícil</button>
+            </div>
+          </div>
+          <div class="option-group">
+            <span class="option-label">MODO</span>
+            <div class="btn-group">
+              <button class="opt-btn active" data-mode="classic" id="opt-classic">Clássico</button>
+              <button class="opt-btn"        data-mode="walls"   id="opt-walls">⚠ Paredes</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="play-btn" id="play-btn">
+          <span class="play-icon">▶</span> JOGAR
+        </button>
+
+        <div class="record-row">
+          <span class="rec-trophy">🏆</span>
+          <span class="rec-label">RECORDE</span>
+          <span class="rec-val" id="menu-record">0</span>
+        </div>
+
+        <div class="legend">
+          <div class="legend-item"><span class="dot red"></span> Fruta normal — 1pt</div>
+          <div class="legend-item"><span class="dot gold"></span> Fruta dourada — 3pt</div>
+          <div class="legend-item"><span class="dot purple"></span> Fruta rara — 5pt</div>
+          <div class="legend-item"><span class="dot blue"></span> 🛡 Escudo — invencível</div>
+          <div class="legend-item"><span class="dot orange"></span> ⚡ Turbo — velocidade</div>
+          <div class="legend-item"><span class="dot pink"></span> ✨ 2x — pontos duplos</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════ GAME SCREEN ═══════════════ -->
+    <div id="game-screen" class="screen">
+
+      <!-- HUD -->
+      <div class="hud" id="hud">
+        <div class="hud-cell">
+          <div class="hud-label">PONTOS</div>
+          <div class="hud-val" id="hud-points">0</div>
+        </div>
+        <div class="hud-cell center">
+          <div class="hud-label">NÍVEL</div>
+          <div class="hud-val level-color" id="hud-level">1</div>
+        </div>
+        <div class="hud-cell right">
+          <div class="hud-label">RECORDE</div>
+          <div class="hud-val gold-color" id="hud-record">0</div>
+        </div>
+      </div>
+
+      <!-- Active power-up indicators -->
+      <div class="pu-bar" id="pu-bar"></div>
+
+      <!-- Canvas -->
+      <div id="game-wrap">
+        <canvas id="gc" width="400" height="400"></canvas>
+      </div>
+
+      <!-- Controls row -->
+      <div class="controls-row">
+        <button class="side-btn" id="sound-btn" title="Som">🔊</button>
+
+        <div class="dpad">
+          <div class="dpad-top">
+            <button class="dpad-btn" id="btn-up" aria-label="Cima">
+              <i class="chev up"></i>
+            </button>
+          </div>
+          <div class="dpad-mid">
+            <button class="dpad-btn" id="btn-left" aria-label="Esquerda">
+              <i class="chev left"></i>
+            </button>
+            <button class="dpad-btn" id="btn-down" aria-label="Baixo">
+              <i class="chev down"></i>
+            </button>
+            <button class="dpad-btn" id="btn-right" aria-label="Direita">
+              <i class="chev right"></i>
+            </button>
+          </div>
+        </div>
+
+        <button class="side-btn" id="pause-btn" title="Pausar">⏸</button>
+      </div>
+
+      <div class="action-stack">
+        <button class="action-btn hidden" id="resume-btn">Continuar</button>
+        <button class="action-btn danger hidden" id="restart-btn">Jogar de Novo</button>
+      </div>
+
+      <div class="kb-hint">← ↑ → ↓ mover &nbsp;·&nbsp; ESPAÇO pausar &nbsp;·&nbsp; ESC menu</div>
+    </div>
+
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
